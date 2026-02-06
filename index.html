@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Survivor</title>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 
-    <!-- p5.js Libraries -->
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- p5.js -->
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
 
-    <!-- Game Scripts -->
+    <!-- Game scripts -->
     <script src="particles.js"></script>
     <script src="vehicle.js"></script>
     <script src="snake.js"></script>
@@ -28,26 +31,71 @@
 </head>
 
 <body>
+
     <div id="ui-container">
+
+        <!-- START SCREEN -->
         <div id="start-screen" class="screen">
             <h1>SPACE SURVIVOR</h1>
-            <p>ZQSD / Arrows to Move</p>
-            <p>Mouse to Aim & Shoot</p>
+
+            <div class="controls-box">
+                <h2>CONTROLS</h2>
+
+                <div class="control-row">
+                    <span class="key">ZQSD / WASD</span>
+                    <span class="action">Move</span>
+                </div>
+
+                <div class="control-row">
+                    <span class="key">Arrow Keys</span>
+                    <span class="action">Move</span>
+                </div>
+
+                <div class="control-row">
+                    <span class="key">Mouse</span>
+                    <span class="action">Aim</span>
+                </div>
+
+                <div class="control-row">
+                    <span class="key">Left Click</span>
+                    <span class="action">Shoot</span>
+                </div>
+            </div>
+
             <button id="start-btn">START MISSION</button>
         </div>
+
+        <!-- GAME HUD -->
         <div id="game-ui" class="hidden">
             <div id="score">SCORE: 0</div>
             <div id="level">LEVEL: 1</div>
+
             <div id="health-bar">
                 <div id="health-fill"></div>
             </div>
         </div>
+
+        <!-- GAME OVER -->
         <div id="game-over-screen" class="screen hidden">
             <h1>MISSION FAILED</h1>
             <p id="final-score">Score: 0</p>
             <button id="restart-btn">RETRY</button>
         </div>
-    </div>
-</body>
 
+    </div>
+
+    <!-- AZERTY / QWERTY SAFE INPUT -->
+    <script>
+        const keysPressed = {};
+
+        window.addEventListener("keydown", (e) => {
+            keysPressed[e.code] = true;
+        });
+
+        window.addEventListener("keyup", (e) => {
+            keysPressed[e.code] = false;
+        });
+    </script>
+
+</body>
 </html>

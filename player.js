@@ -35,13 +35,13 @@ class Player {
 
         // Movement Control (WASD / Arrows)
         let force = createVector(0, 0);
-        if (keyIsDown(81) || keyIsDown(LEFT_ARROW)) { // Q / Left
+        if (keyIsDown(81) || keyIsDown(LEFT_ARROW) || keyIsDown(65)) { // Q / Left / A
             force.x -= 1;
         }
         if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) { // D / Right
             force.x += 1;
         }
-        if (keyIsDown(90) || keyIsDown(UP_ARROW)) { // Z / Up
+        if (keyIsDown(90) || keyIsDown(UP_ARROW) || keyIsDown(87)) { // Z / Up / W
             force.y -= 1;
         }
         if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) { // S / Down
