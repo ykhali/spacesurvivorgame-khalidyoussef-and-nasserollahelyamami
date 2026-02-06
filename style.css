@@ -1,182 +1,186 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background: black;
-    color: white;
-    font-family: 'Orbitron', sans-serif;
     overflow: hidden;
+    background-color: #000;
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
     user-select: none;
 }
 
-/* Canvas */
 canvas {
+    display: block;
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     z-index: 1;
 }
 
-/* UI container */
 #ui-container {
-    position: fixed;
-    inset: 0;
-    z-index: 10;
+    position: absolute;
+    /* Place UI above canvas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    /* Let clicks pass through to canvas generally */
+    z-index: 10;
 }
 
-/* Screens */
 .screen {
     position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    background:
-        radial-gradient(circle at top, rgba(0, 255, 255, 0.12), transparent 60%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.92), #000);
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0ff;
     pointer-events: auto;
-    animation: fadeIn 0.8s ease;
+    /* Re-enable clicks for UI elements */
+    z-index: 20;
+}
+
+#level-screen {
+    border-color: #f0f;
+    box-shadow: 0 0 30px #f0f;
+}
+
+#level-screen h1 {
+    color: #f0f;
+    text-shadow: 0 0 20px #f0f;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.controls-box {
+    text-align: left;
+    background: rgba(0, 255, 255, 0.1);
+    padding: 15px 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 3px solid #0ff;
+}
+
+.controls-box p {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #ccc;
+    font-family: 'Courier New', Courier, monospace;
+    /* Tech look */
+}
+
+.controls-box strong {
+    color: #0ff;
+}
+
+button {
+    background: transparent;
+    border: 2px solid #0ff;
+    color: #0ff;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 30px #0ff;
 }
 
 .hidden {
     display: none;
 }
 
-/* Title */
-h1 {
-    font-size: 4rem;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
-    color: #00ffff;
-    text-shadow:
-        0 0 10px rgba(0, 255, 255, 0.7),
-        0 0 30px rgba(0, 255, 255, 0.4);
-}
-
-/* Controls panel */
-.controls-box {
-    margin: 30px 0;
-    padding: 20px 30px;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 255, 255, 0.4);
-    background: rgba(0, 20, 30, 0.6);
-    min-width: 320px;
-}
-
-.controls-box h2 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    color: #00ffff;
-    letter-spacing: 2px;
-}
-
-.control-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
-    font-size: 1rem;
-}
-
-.key {
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: 1px solid #00ffff;
-    background: rgba(0, 255, 255, 0.1);
-    color: #00ffff;
-    font-weight: bold;
-}
-
-.action {
-    color: #ccefff;
-    opacity: 0.9;
-}
-
-/* Buttons */
-button {
-    margin-top: 20px;
-    padding: 14px 42px;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #00ffff, #0088ff);
-    border: none;
-    color: black;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow:
-        0 0 15px rgba(0, 255, 255, 0.5),
-        inset 0 0 8px rgba(255, 255, 255, 0.6);
-}
-
-button:hover {
-    transform: scale(1.08);
-    box-shadow:
-        0 0 30px rgba(0, 255, 255, 0.9),
-        inset 0 0 12px rgba(255, 255, 255, 0.8);
-}
-
-/* Game HUD */
 #game-ui {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-#score, #level {
-    position: absolute;
     top: 20px;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #score {
-    left: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
 }
 
-#level {
-    right: 20px;
-}
-
-/* Health bar */
 #health-bar {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 16px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 200px;
+    height: 20px;
+    border: 2px solid #f00;
+    background: rgba(50, 0, 0, 0.5);
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
 }
 
 #health-fill {
-    height: 100%;
     width: 100%;
-    background: linear-gradient(to right, #00ff99, #00ffff);
-    transition: width 0.3s ease;
+    height: 100%;
+    background: #f00;
+    box-shadow: 0 0 10px #f00;
+    transition: width 0.2s;
 }
 
-/* Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(1.05);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+#weapon-timer {
+    font-size: 1.5rem;
+    color: #ff0;
+    text-shadow: 0 0 5px #ff0;
+    font-weight: bold;
+    margin-left: 15px;
+    /* Spacing if side-by-side */
+}
+
+#level-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#health-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#exit-btn {
+    background: transparent;
+    border: 2px solid #f00;
+    color: #f00;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+#exit-btn:hover {
+    background: #f00;
+    color: #fff;
+    box-shadow: 0 0 10px #f00;
 }

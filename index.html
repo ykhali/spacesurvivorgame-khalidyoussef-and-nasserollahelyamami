@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Survivor</title>
-
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- p5.js -->
+    <!-- p5.js Libraries -->
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
 
-    <!-- Game scripts -->
+    <!-- Game Scripts -->
     <script src="particles.js"></script>
     <script src="vehicle.js"></script>
     <script src="snake.js"></script>
@@ -31,71 +28,41 @@
 </head>
 
 <body>
-
     <div id="ui-container">
-
-        <!-- START SCREEN -->
         <div id="start-screen" class="screen">
             <h1>SPACE SURVIVOR</h1>
-
             <div class="controls-box">
-                <h2>CONTROLS</h2>
-
-                <div class="control-row">
-                    <span class="key">ZQSD / WASD</span>
-                    <span class="action">Move</span>
-                </div>
-
-                <div class="control-row">
-                    <span class="key">Arrow Keys</span>
-                    <span class="action">Move</span>
-                </div>
-
-                <div class="control-row">
-                    <span class="key">Mouse</span>
-                    <span class="action">Aim</span>
-                </div>
-
-                <div class="control-row">
-                    <span class="key">Left Click</span>
-                    <span class="action">Shoot</span>
-                </div>
+                <p><strong>W or Z(up) A or Q(left) S(down) D(right) / Arrows</strong> : Move</p>
+                <p><strong>Mouse</strong> : Aim & Shoot</p>
+                <p><strong>'P' Key</strong> : Call Ally (creates allies)</p>
+                <p><strong>'N' Key</strong> : Spawn Snake</p>
+                <p><strong>'D' Key</strong> : Activate the debug mode</p>
             </div>
-
             <button id="start-btn">START MISSION</button>
         </div>
-
-        <!-- GAME HUD -->
         <div id="game-ui" class="hidden">
             <div id="score">SCORE: 0</div>
-            <div id="level">LEVEL: 1</div>
-
-            <div id="health-bar">
-                <div id="health-fill"></div>
+            <div id="level-container">
+                <div id="level">LEVEL: 1</div>
+                <div id="weapon-timer" class="hidden">WEAPON: 30s</div>
+            </div>
+            <div id="health-container">
+                <div id="health-bar">
+                    <div id="health-fill"></div>
+                </div>
+                <button id="exit-btn" class="hidden">Exit</button>
             </div>
         </div>
-
-        <!-- GAME OVER -->
+        <div id="level-screen" class="screen hidden">
+            <h1>HYPERSPACE JUMP</h1>
+            <p id="next-level-text">Approaching Sector 2</p>
+        </div>
         <div id="game-over-screen" class="screen hidden">
             <h1>MISSION FAILED</h1>
             <p id="final-score">Score: 0</p>
             <button id="restart-btn">RETRY</button>
         </div>
-
     </div>
-
-    <!-- AZERTY / QWERTY SAFE INPUT -->
-    <script>
-        const keysPressed = {};
-
-        window.addEventListener("keydown", (e) => {
-            keysPressed[e.code] = true;
-        });
-
-        window.addEventListener("keyup", (e) => {
-            keysPressed[e.code] = false;
-        });
-    </script>
-
 </body>
+
 </html>
