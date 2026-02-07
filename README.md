@@ -1,7 +1,7 @@
 # Space Survivor 🚀
 
 > **Projet Master 2 IA2 - CASA G1 (2025-2026)**
-> **Développé par : Khalid Youssef**
+> **Développé par : Khalid Youssef & El Yamami Nasserollah**
 
 ---
 
@@ -12,7 +12,7 @@
 ### Comportements Implémentés (Behaviors)
 
 *   **Le Vaisseau Joueur** : Utilise une physique basée sur l'accélération et la friction (inertie spatiale), donnant une sensation de pilotage réaliste ("Drift").
-*   **Ennemis "Seeker" (Kamikazes)** : Utilisent le comportement **`Seek`**. Ils calculent le vecteur vers le joueur et appliquent une force maximale pour le percuter. C'est l'ennemi le plus agressif.
+*   **Ennemis "Seeker"** : Utilisent le comportement **`Seek`**. Ils calculent le vecteur vers le joueur et appliquent une force maximale pour le percuter. C'est l'ennemi le plus agressif.
 *   **Ennemis "Shooter" (Tactiques)** : Utilisent une combinaison de **`Arrive`** (s'approcher mais ralentir pour viser) et **`Flee`** (fuir si le joueur est trop proche). Ils maintiennent une distance de combat idéale.
 *   **Alliés (Drones de Soutien)** : Une prouesse d'IA de groupe. Ils utilisent le comportement **`Flocking`** (Séparation) pour ne pas se rentrer dedans, tout en utilisant **`Arrive`** pour suivre le joueur en formation et **`Seek`** pour chasser les ennemis proches.
 *   **Serpents de l'Espace** : Une chaîne cinématique où chaque segment utilise **`Arrive`** pour suivre le segment précédent, créant un mouvement ondulatoire naturel.
@@ -52,15 +52,13 @@
 Ce projet a été assisté par un agent IA (Google Deepmind "Antigravity") pour l'accélération du développement.
 
 *   **Spécifications** : L'IA a servi de "Pair Programmer". Je fournissais la logique de haut niveau (ex: "Je veux que les ennemis s'enfuient si je m'approche"), et l'IA proposait l'implémentation vectorielle correspondante.
-*   **Exemple de Prompt Utilisé** :
-    > *"Refactor the Enemy and Player classes to extend a common Vehicle class using the 'applyBehaviors' pattern. Ensure strictly no code duplication for physics updates."*
-*   **Débuggage** : L'IA a été cruciale pour identifier rapidement les erreurs de syntaxe ou de logique dans les boucles de jeu complexes.
+*   **Debuging** : L'IA a été cruciale pour identifier rapidement les erreurs de syntaxe ou de logique dans les boucles de jeu complexes.
 
 ---
 
-## 🎮 Contrôles (Rappel)
+## 🎮 Contrôles
 
-*   **Déplacement** : ZQSD / Flèches.
+*   **Déplacement** : ZQSD / WASD / Flèches.
 *   **Tir** : Clic Souris.
 *   **Allié** : Touche **'P'**.
 *   **Serpent** : Touche **'N'**.
