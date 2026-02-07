@@ -28,7 +28,9 @@ Projet réalisé dans le cadre du Master 2 IA2 CASA G1 2025-2026.
 *   **Viser** : La souris (le vaisseau regarde vers le curseur).
 *   **Tirer** : Clic Gauche de la souris.
 *   **Appeler un Allié** : Touche **'P'**.
-*   **Faire apparaître un Serpent** : Touche **'S'** (Fun/Debug).
+*   **Faire apparaître un Serpent** : Touche **'N'** (Fun/Debug).
+*   **Activer debug mode** : Touche **'O'**
+*   **Quiter le jeu** : Clicker sur le bouton **Exit**
 *   **Recommencer** : Cliquez sur le bouton "Restart" à l'écran de fin.
 
 ## 🛠️ Installation et Lancement
@@ -56,6 +58,7 @@ Ce projet est une application web statique.
 
 ## 👥 Crédits
 
-- Développé par **Khalid Youssef** 
+- Développé par **Khalid Youssef** et **Nasserollah el yamami**
+- Matiere IA réctive
 - Master 2 IA2 - Université côte d'azur
 - Année Universitaire : 2025-2026.
